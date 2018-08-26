@@ -170,7 +170,7 @@ dateInput("date", "Date:")
   mainPanel(
   h3('Illustrating outputs'),
   h4('You entered'),
-  # "id1" is the label you've given above, then you have to put "o" infront of the label "oid1"
+  # "id1" is the label you've given above, "oid1" is the associated output label in the the server.R function
   verbatimTextOutput("oid1"),
     h4('You entered'),
   verbatimTextOutput("oid2"),
@@ -188,15 +188,17 @@ dateInput("date", "Date:")
 ```r
 library(shiny)
 shinyServer(
+#--- Write the function to take corresponding inputs and outputs--------------------------------
   function(input, output){
-#--------------------------------
+#------------------------------------------
 # If you enter the following codes only then it will show you the things you input
-# renderPrint means print the output in the printed format
+# renderPrint means print the output in printed format
+# "id1", "id2" and "date" are the labels specified in ui.R function
     output$oid1 <- renderPrint({input$id1})
     output$oid2 <- renderPrint({input$id2})
     output$odate <- renderPrint({input$date})
   }
-#---------------------------------
+#-----------------------------------------
 ) 
 
 ```
@@ -205,5 +207,63 @@ shinyServer(
 
 ![](figures/ex3.png)  
 
-## Example 4
+## Example 4: Let's build our prediction function
+
+User input the values for corresponding predictors and shiny app will give you the predicted values
+
+1. ui.R
+
+```r
+library(shiny)
+shinyUI(
+#--format of the web application interface
+  pageWithSidebar(
+#--Application title ---------------------
+  headerPanel("Diabetes prediction"),
+  
+#-- Format of the sidebar panel ----------
+
+sidebarPanel(
+# The default value for the input is 50
+  numericInput('glucose', 'Glucose mg/dl', 90, min=50, max=200, step = 5),
+  submitButton('Submmit')
+),
+
+#-- Main Panel --------------------------
+mainPanel(
+  h3('Results of prediction'),
+  h4('You entered'),
+# the "inputValue" label comes from server.R file
+  verbatimTextOutput("inputValue"),
+  h4('Which resulted in a prediction of '),
+# the "prediction" is also a label which comes from server.R function
+  verbatimTextOutput("prediction")
+    )
+  )
+)
+
+```
+
+2. server.R
+
+```r
+# This is the prediction function
+# prediction function is written outside of the shinyServer
+diabetesRisk <- function(glucose) glucose/200
+
+shinyServer(
+#---- Write the function to pass inputs and outputs
+  function(input, output){
+  output$inputValue <- renderPrint({input$glucose})
+  output$prediction <- renderPrint({diabetesRisk(input$glucose)})
+  }
+
+)
+
+
+```
+
+3. output: example 4
+
+![](figures/ex4.png)
 
