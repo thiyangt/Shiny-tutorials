@@ -79,8 +79,12 @@ shinyServer(
 ```
   3. runApp
   
-  In R, change to the directories with these files and type runApp()
+  In R, change to the directories with these files and type runApp() as shown below
+
+![](figures/run.png)  
   
+  4. Output
+
 ![](figures/ex1.png)  
 
 ## Example 2: R function for HTML markups
@@ -315,4 +319,4 @@ function(input, output){
 
 ![](figures/ex5.png)
 
-
+## Example 6: 
