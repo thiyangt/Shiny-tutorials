@@ -33,7 +33,7 @@ In order to create a shiny project you need two things:
         
         1. ui.R : For use interface, controls how it looks.
         
-        2. server.R: Controls what it does.
+        2. server.R: Controls what it does/ perform the calculations.
         
   The two files need to be in the same directory (folder). 
   
@@ -266,4 +266,53 @@ shinyServer(
 3. output: example 4
 
 ![](figures/ex4.png)
+
+## Example 5: include plots
+
+1. ui.R
+
+```r
+shinyUI(pageWithSidebar(
+  headerPanel("Example plot"),
+  sidebarPanel(
+    sliderInput('mu', 'Guess at the mean', value=70, min=62, max=74, step=0.05)
+  ),
+  mainPanel(
+  # newHist is the name that I've given in the server.R file to create the corresponding histogram
+    plotOutput('newHist')
+  )
+))
+
+```
+
+2. server.R
+
+```r
+# First the dataset I need to grab
+library(UsingR)
+data(galton)
+
+# now write the content of server.R
+
+shinyServer(
+# define the function of inputs and outputs ------
+function(input, output){
+# I give the name to my histogram as "newHist", this name is used in ui.R
+    output$newHist <- renderPlot({
+    hist(galton$child, xlab="child height", col="lightblue",          main="Histogram")
+    mu <- input$mu
+    lines(c(mu,mu), c(0, 200), col="red", led=5)
+    mse <- mean((galton$child-mu)^2)
+    text(63, 150, paste("mu = ", mu))
+    text(63, 140, paste("MSE = ", round(mse, 2)))
+    })
+
+  }
+)
+```
+
+3. Example 5: output
+
+![](figures/ex5.png)
+
 
