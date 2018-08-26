@@ -299,7 +299,7 @@ shinyServer(
 function(input, output){
 # I give the name to my histogram as "newHist", this name is used in ui.R
     output$newHist <- renderPlot({
-    hist(galton$child, xlab="child height", col="lightblue",          main="Histogram")
+    hist(galton$child, xlab="child height", col="lightblue", main="Histogram")
     mu <- input$mu
     lines(c(mu,mu), c(0, 200), col="red", led=5)
     mse <- mean((galton$child-mu)^2)
