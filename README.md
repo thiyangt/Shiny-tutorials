@@ -44,6 +44,9 @@ In order to create a shiny project you need two things:
 ```r
 library(shiny)
 shinyUI(pageWithSidebar(
+
+############### body ################
+
 #----- title of my shiny app -----------
   headerPanel("Data science FTWI"),
 #----- display of the sidebar panel-----
@@ -55,12 +58,14 @@ shinyUI(pageWithSidebar(
   h3('Main Panel text') # h3: 3rd level html heading
   )
 #---------------------------------------
+##########################################
+
 ))
 
 ```
   2.  server.R
   
-    Following server.R function is not going to do anything.
+  Following server.R function is not going to do anything.
   
 ```r
 library(shiny)
@@ -78,4 +83,52 @@ shinyServer(
   
 ![Example 1 output](figures/ex1.png)  
 
+## Example 2: R function for HTML markups
 
+Note: WHen creating a shiny app you should be careful of the the commas.
+
+1. ui.R function
+
+```r
+library(shiny)
+shinyUI(pageWithSidebar(
+
+############### body ################
+
+#----- title of my shiny app -----------
+  headerPanel("Illustating markup"),
+#----- display of the sidebar panel-----
+  sidebarPanel(
+  h1('Sidebar text'), # comma after every h label
+  h1('H1 text'), 
+  h2('H2 text'), 
+  h3('H3 text'), 
+  h4('H4 text') # no comma here
+  ),
+#----- display of the main panel--------
+  mainPanel(
+  h3('Main Panel text') ,
+  code('some code'),
+  p('some ordinary text')
+  )
+#---------------------------------------
+##########################################
+
+))
+```
+
+2. server. R
+
+This is same as example 1
+
+```r
+library(shiny)
+shinyServer(
+ we need the following function to be included
+  function(input, output){ 
+  }
+)
+```
+ 3. Example 2: output
+
+![Example 2:output](figures/ex2.png)  
