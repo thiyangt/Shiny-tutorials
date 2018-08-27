@@ -31,42 +31,53 @@ library(shiny)
 
 In order to create a shiny project you need two things:
         
-    1. ui.R : For use interface, controls how it looks.
-          + All of the style elements are handled through ui.R
-          + If you want to control more then ceate a folder called www and then make necessary changes on index.html file. For students with a lot of expeience in html, js, css it would be breeze and probably easier and more flexible than the R html controls in ui.R
-        + Functionalities in standard ui.R
-              + Allow users to upload or download files
-              + Have tabbed main panels
-              + Have editable data tables
-              + Have a dynamic UI
-              + User defined inputs and outputs
-              + Put a submit button so that Shiny only execute complex code after user hit submit.
+1. ui.R : For use interface, controls how it looks.
+
+      + All of the style elements are handled through ui.R
+        
+      + If you want to control more then ceate a folder called www and then make necessary changes on index.html file. For students with a lot of expeience in html, js, css it would be breeze and probably easier and more flexible than the R html controls in ui.R
+      
+      + Functionalities in standard ui.R
+      
+          + Allow users to upload or download files
+              
+          + Have tabbed main panels
+              
+          + Have editable data tables
+              
+          + Have a dynamic UI
+              
+          + User defined inputs and outputs
+              
+          + Put a submit button so that Shiny only execute complex code after user hit submit.
             
+2. server.R: Controls what it does/ perform the calculations.
         
-    2. server.R: Controls what it does/ perform the calculations.
-        
-        
-    3 Distributing a Shiny app
+3. Distributing a Shiny app
     
     + The quickest way is to send (or put on github or gist or dropbox or whatever) someone the app directory and they can call `runApp`
     
     + or You could create an R package and create a wrapper that calls `runApp`
     
     + Run a shiny server (beyound the scope of this cousera class)
+    
         + Requires setting up a (Shiny server)
+        
         + Probably easiest if you see one of the virtual machines where they already have Shiny servers running well.
+        
         + Don't put system calls in your code (this is one of the first things many of us do for fun, but introduces security concerns.)
         
         
-        
-  The two files need to be in the same directory (folder). If you tried it and are like most, you had an easy time with `ui.R` but a harder time with `server.R`. Building `ui.R` is pretty trivial. 
+The two files need to be in the same directory (folder). If you tried it and are like most, you had an easy time with `ui.R` but a harder time with `server.R`. Building `ui.R` is pretty trivial. 
   
 ## More on layouts
 
 1. `sidebar` layout with a main panel is the easiest.
 
 2. Using `shinyUI(fluidpage(` is much more flexible and allows tighter access to the bootstrap style
+
        + `fluidRow` statements ceate rows and then the `column` function from within it can create columns.
+       
        + Tabsets, navlists aand navbars can be created for more complex apps.
   
 ## Example 1: Output format
