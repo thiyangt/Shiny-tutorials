@@ -76,9 +76,9 @@ The two files need to be in the same directory (folder). If you tried it and are
 
 2. Using `shinyUI(fluidpage(` is much more flexible and allows tighter access to the bootstrap style
 
-       + `fluidRow` statements ceate rows and then the `column` function from within it can create columns.
+    + `fluidRow` statements ceate rows and then the `column` function from within it can create columns.
        
-       + Tabsets, navlists aand navbars can be created for more complex apps.
+    + Tabsets, navlists aand navbars can be created for more complex apps.
   
 ## Example 1: Output format
 
@@ -432,11 +432,11 @@ shinyUI(pageWithSidebar(
 
 ## Example 7: Reactive expressions
 
-    - Sometimes to  speed up your app, you want reactive operations (those operations that depend on widget input values) to be performed outside of a `render*`(for * for plot(renderPlot), text(renderText), etc.) to be performed outside of a render* statement
+  - Sometimes to  speed up your app, you want reactive operations (those operations that depend on widget input values) to be performed outside of a `render*`(for * for plot(renderPlot), text(renderText), etc.) to be performed outside of a render* statement
     
-    - For example, you want to do some code that gets reused in several `render*` statements and don not want to recalculate it for each.
+  - For example, you want to do some code that gets reused in several `render*` statements and don not want to recalculate it for each.
     
-    -  The `reactive` function is made for this purpose.
+  - The `reactive` function is made for this purpose.
     
 1. ui.R, this is exactly the same as before
 
@@ -541,9 +541,9 @@ shinyServer(
 
 ## Example 9: COnditional statement on Go! button (cont. from Example 8)
 
-    - `input$goButton(or whatever you named it) gets increased by one for every time pushed.
+  - `input$goButton(or whatever you named it) gets increased by one for every time pushed.
     
-    - So, when in reactive code (such as `render` or `reactive`) you can use conditional statemets like below to only execute code on the first button pess or to not execute code until the first or subsequent button press.
+  - So, when in reactive code (such as `render` or `reactive`) you can use conditional statemets like below to only execute code on the first button pess or to not execute code until the first or subsequent button press.
     
 `if (input$goButton==1) {some statement}`
 
