@@ -79,6 +79,22 @@ The two files need to be in the same directory (folder). If you tried it and are
     + `fluidRow` statements ceate rows and then the `column` function from within it can create columns.
        
     + Tabsets, navlists aand navbars can be created for more complex apps.
+    
+3. Some layouts
+
+    + `fluidRow()`, `column()`: based on the bootstrap [grid system] (http://v4-alpha.getbootstrap.com/layout/grid/). See ?fluidRow for more details.
+    
+    + `flowLayout()`: Lays out elements in a left-to-right, top-to-bottom arrangement.
+    
+    + `sidebarLayout()`: Create a layout with a sidebar and main area. (Most commonly used layout.)
+    
+    + `splitLayout()`: Lays out elements horizontally, dividing the available horizontal space into equal parts (by default).
+    
+    + `verticalLayout()`: Create a container that includes one or more rows of content.
+    
+    ![source: http://dreamhunter.me/shinyTutorial/ui.html](figures/layouts.png)
+    
+
   
 ## Example 1: Output format
 
@@ -120,8 +136,15 @@ shinyServer(
 )
 
 ```
+  3. runApp
+  
+  In R, change to the directories with these files and type runApp() as shown below
 
-**Another method: source (tsgenerator)**
+![](figures/run.png)  
+  
+  
+  
+## Another method: source (tsgenerator)
 
 ```r
  server <- function(input, output){
@@ -139,12 +162,7 @@ ui <- flidPage(
 shinyApp(ui = ui, server = server)
 
 ```
-
-  3. runApp
   
-  In R, change to the directories with these files and type runApp() as shown below
-
-![](figures/run.png)  
   
   4. Output
 
@@ -152,7 +170,7 @@ shinyApp(ui = ui, server = server)
 
 ## Example 2: R function for HTML markups
 
-Note: WHen creating a shiny app you should be careful of the the commas.
+Note: When creating a shiny app you should be careful of the the commas.
 
 1. ui.R function
 
@@ -561,9 +579,9 @@ shinyServer(
 
 ## Example 9: COnditional statement on Go! button (cont. from Example 8)
 
-  - `input$goButton(or whatever you named it) gets increased by one for every time pushed.
-    
-  - So, when in reactive code (such as `render` or `reactive`) you can use conditional statemets like below to only execute code on the first button pess or to not execute code until the first or subsequent button press.
+1. `input$goButton(or whatever you named it) gets increased by one for every time pushed. 
+
+2.  So, when in reactive code (such as `render` or `reactive`) you can use conditional statemets like below to only execute code on the first button pess or to not execute code until the first or subsequent button press.
     
 `if (input$goButton==1) {some statement}`
 
