@@ -120,6 +120,26 @@ shinyServer(
 )
 
 ```
+
+**Another method: source (tsgenerator)**
+
+```r
+ server <- function(input, output){
+
+
+}
+
+ui <- flidPage(
+
+
+)
+
+# Then run
+
+shinyApp(ui = ui, server = server)
+
+```
+
   3. runApp
   
   In R, change to the directories with these files and type runApp() as shown below
