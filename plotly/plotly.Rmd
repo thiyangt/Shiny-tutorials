@@ -1,0 +1,68 @@
+---
+title: "Plotly"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Package
+
+```{r}
+library(tidyverse)
+library(plotly)
+
+```
+
+## About plotly
+
+- plotly uses the htmlwidget framework, which allows plots to work seamlessly and consistently in various contexts.
+
+- ggplot: take a dataframe and a mapping from data variables to visual aesthetics. ggplot2 won't know how to geometrically represent the mapping until we add a layer to the plot via one of `geom_*()` or `stat_*()` functions.
+
+- Main functions
+
+    + `plot_ly()`: transforms data into a plotly object.
+    
+    + `ggplotly()`: transforms a ggplot object into a plotly object.
+
+To ensure plotly is installed correctly.
+
+```{r}
+plot_ly(z=~volcano)
+
+```
+
+## Working with plotly
+
+1. First create a plot with ggplot. 
+
+```{r}
+p <- ggplot(txhousing, aes(date, median)) +
+  geom_line(aes(group = city), alpha = 0.2)
+p
+
+```
+
+2. The `ggplotly()` function: converts a ggplot object to a plotly object.
+
+
+## Arranging multiple htmlwidgets with flexbox
+
+```{r, eval=FALSE}
+library(shiny)
+fluidPage(
+  fluidPage(
+    fluidRow(p),
+    fluidRow(
+      column(6, p), column(6, p)
+    )
+  )
+)
+
+```
+
+
+
+
