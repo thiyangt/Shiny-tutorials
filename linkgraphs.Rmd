@@ -1,0 +1,21 @@
+---
+output: rmarkdown::github_document
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+### Linking graphs 
+
+1. Linking graphs with shiny
+
+2. Linking views without shiny
+
+```{r}
+library(tidyverse)
+library(plotly)
+library(crosstalk)
+
+```
