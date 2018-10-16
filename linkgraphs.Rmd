@@ -24,7 +24,7 @@ library(crosstalk)
 
 As shown in Linking views with shiny, the key attribute provides a way to attach a key (i.e., ID) to graphical elements – an essential feature when making graphical queries. When linking views in plotly outside of shiny, the suggested way to attach a key to graphical elements is via the SharedData class from the crosstalk package (Cheng 2016). At the very least, the new() method for this class requires a data frame, and a key variable. Lets suppose we’re interested in making comparisons of housing sales across cities for a given year using the txhousing dataset. Given that interest, we may want to make graphical queries that condition on a year, so we start by creating a SharedData object with year as the shared key.
 
-```{r}
+```{r, eval=FALSE}
 sd <- SharedData$new(txhousing, ~year)
 p <- ggplot(sd, aes(month, median)) +
   geom_line(aes(group = year)) + 
@@ -33,5 +33,35 @@ p <- ggplot(sd, aes(month, median)) +
 
 ggplotly(p, tooltip = "year") %>%
   highlight(defaultValues = 2015, color = "red")
+
+```
+
+```{r}
+d <- SharedData$new(iris)
+p <- GGally::ggpairs(d, aes(color = Species), columns = 1:4)
+highlight(ggplotly(p), on = "plotly_selected")
+
+```
+
+```{r}
+library(ggplot2)
+
+df <- data.frame(f1=factor(rbinom(100, 1, 0.45), label=c("m","w")), 
+                 f2=factor(rbinom(100, 1, 0.45), label=c("young","old")),
+                 boxthis=rnorm(100))
+df$id <- 1:100
+df$f1f2 <- interaction(df$f1, df$f2)
+d <- SharedData$new(df, ~id)
+p1 <- ggplot(aes(y = boxthis, x = f1f2), data = d) + geom_boxplot(outlier.shape=NA) + #avoid plotting outliers twice
+  geom_jitter(position=position_jitter(width=.1, height=0))
+
+p2 <- ggplot(aes(y = boxthis, x = f1), data = d) + geom_boxplot(outlier.shape=NA) + #avoid plotting outliers twice
+  geom_jitter(position=position_jitter(width=.1, height=0))
+
+highlight(
+  subplot(
+  ggplotly(p1, tooltip = "id"),
+  ggplotly(p2, tooltip = "id")),
+ on = "plotly_hover")
 
 ```
