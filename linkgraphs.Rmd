@@ -65,3 +65,18 @@ highlight(
  on = "plotly_hover")
 
 ```
+
+```{r}
+d <- SharedData$new(df,~id)
+p1 <- ggplot(aes(y = boxthis, x = f1f2), data = d) + geom_boxplot() 
+
+p2 <- ggplot(aes(y = boxthis, x = f1), data = d) + geom_boxplot() 
+
+highlight(
+  subplot(
+  ggplotly(p1),
+  ggplotly(p2)),
+on = "plotly_click")
+
+
+```
