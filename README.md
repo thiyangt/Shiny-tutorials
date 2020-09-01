@@ -94,7 +94,7 @@ The two files need to be in the same directory (folder). If you tried it and are
     
     ![source: http://dreamhunter.me/shinyTutorial/ui.html](figures/layouts.png)
     
-
+![](shiny.png)
   
 ## Example 1: Output format
 
